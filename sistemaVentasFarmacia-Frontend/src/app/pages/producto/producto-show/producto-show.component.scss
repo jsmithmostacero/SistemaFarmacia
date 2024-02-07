@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,100&family=Protest+Strike&display=swap');
+
+
+.dim-show{
+    width: auto;
+    padding: 30px;
+}
+
+.title-show{
+    font-family: 'Protest Strike', sans-serif;
+    font-size: 40px;
+    background: linear-gradient(45deg, #4f81df, #000000); /* Cambia los colores según tus preferencias */
+    -webkit-background-clip: text; /* Propiedad específica para navegadores WebKit (Safari, Chrome) */
+    color: transparent; /* Hace el texto transparente para que el fondo degradado sea visible */
+}
+
+.sub-title{
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    color: #3d55be;
+}

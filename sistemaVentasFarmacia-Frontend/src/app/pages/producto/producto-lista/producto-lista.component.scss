@@ -1,0 +1,21 @@
+// TABLA Y COLUMNA CENTRADAS
+
+.mat-elevation-z8 {
+    overflow-x: auto; /* Agrega una barra de desplazamiento horizontal si es necesario */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    text-align: center; /* Centra el contenido de las celdas */
+    // padding: 8px; /* Ajusta el espaciado interno de las celdas según sea necesario */
+  }
+  
+  
+  /* Ajusta el ancho de las columnas según sea necesario */
+  mat-header-cell, mat-cell {
+    min-width: 100px;
+  }

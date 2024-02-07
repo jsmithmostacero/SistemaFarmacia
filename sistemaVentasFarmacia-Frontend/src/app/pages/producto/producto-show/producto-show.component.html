@@ -1,0 +1,81 @@
+<!-- producto-detalle.component.html -->
+<br>
+
+<mat-grid-list cols="12" rowHeight="80px"  >
+    <mat-grid-tile class="" [colspan]="1">
+    </mat-grid-tile>
+    <mat-grid-tile class="" [colspan]="9">
+        <h1 class="title-show text-center">Detalle del Producto</h1>
+    </mat-grid-tile>
+    <mat-grid-tile class="" [colspan]="1">
+        <div class="example-button-container">
+            <button (click)="getPageListaProducto()"mat-fab color="primary">
+                <i class="fa-solid fa-right-from-bracket"  style="font-size: 24px;"></i>
+            </button>
+          </div>
+    </mat-grid-tile>
+    <mat-grid-tile class="" [colspan]="1">
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list class="" cols="12" rowHeight="500px">
+    <mat-grid-tile class="" [colspan]="1" > 
+    
+    </mat-grid-tile>
+
+    <mat-grid-tile class="" [colspan]="5">
+        <div mat-dialog-content>
+            <p class="sub-title"><strong>Producto</strong></p>
+            <p><strong>ID del Producto:</strong> {{ producto.idProducto }}</p>
+            <p><strong>Nombre:</strong> {{ producto.nombre }}</p>
+            <p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+            <p>
+                <strong>Precio:</strong> S/.
+                {{ producto.precio | number: '1.2-2' }}
+            </p>
+            <p><strong>Cantidad:</strong> {{ producto.cantidad }} unidades</p>
+            <hr />
+            <p class="sub-title"><strong>Categoria</strong></p>
+            <p>
+                <strong>Categoría: </strong>
+                {{ producto.tipoProducto.nombre }}
+            </p>
+            <p>
+                <strong>Descripción:</strong>
+                {{ producto.tipoProducto.descripcion }}
+            </p>
+            <hr />
+            <p class="sub-title"><strong>Proveedor</strong></p>
+            <p>
+                <strong>ID del Proveedor:</strong>
+                {{ producto.proveedor.idProveedor }}
+            </p>
+            <p>
+                <strong>Nombre del Proveedor:</strong>
+                {{ producto.proveedor.nombre }}
+            </p>
+            <p>
+                <strong>Contacto del Proveedor:</strong>
+                {{ producto.proveedor.contacto }}
+            </p>
+            <p>
+                <strong>Dirección del Proveedor:</strong>
+                {{ producto.proveedor.direccion }}
+            </p>
+        </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile class="" [colspan]="5" >
+        <img
+            [src]="producto.productoImagenUrl"
+            alt="Imagen del producto"
+            class="img-fluid mb-3 dim-show"
+        />
+    </mat-grid-tile>
+
+    <mat-grid-tile class="" [colspan]="1">
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+

@@ -1,0 +1,149 @@
+<!-- {{productos|json}} -->
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  template="<img width='70px'; src='https://www.gifde.com/gif/otros/decoracion/cargando-loading/cargando-loading-041.gif' />"
+>
+</ngx-spinner>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6 d-flex align-items-center">
+                <img src="../../../assets/img/productos.png" alt="" width="70" height="">
+                <h1>Registrar Producto</h1>
+            </div>
+              
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                    <li class="breadcrumb-item active">Blank Page</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- <div class="container mt-3"> -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <form [formGroup]="formularioProducto" (ngSubmit)="onUpload()">
+                        <div class="w-100" appearance="outline">
+                            <label for="imagen" class="form-label">Imagen del producto</label>
+                            <input required class="form-control" type="file" id="imagen" formControlName="image" 
+                            #imagenInputFile (change)="onFileChange($event)" accept ="image/png, image/jpeg, image/gif">
+                        </div> 
+
+                      <br>
+
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label class="label-styles">Nombre</mat-label>
+                            <input matInput formControlName="nombre" />
+                            <mat-error *ngIf="formularioProducto.controls['nombre']">*El nombre es requerido</mat-error>
+                              
+                        </mat-form-field>
+
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label class="label-styles"
+                                >Descripcion</mat-label
+                            >
+                            <input required matInput formControlName="descripcion"/>
+                            <mat-error *ngIf="formularioProducto.controls['descripcion']">*La descripción es requerida</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field
+                            class="w-100"
+                            appearance="outline"
+                            floatLabel="always"
+                        >
+                            <mat-label class="label-styles">Precio</mat-label>
+                            <input
+                                matInput
+                                type="number"
+                                class="example-right-align"
+                                placeholder="0"
+                                formControlName="precio"
+                                required
+                            />
+                            <mat-error *ngIf="formularioProducto.get('precio').hasError('required')">
+                                *El precio es obligatorio
+                              </mat-error>
+                              <mat-error *ngIf="formularioProducto.get('precio').hasError('min')">
+                                *El precio debe ser mayor o igual a 0.01
+                              </mat-error>
+                            <span matTextPrefix>S/. &nbsp;</span>
+                            <span matTextSuffix>.00</span>
+                        </mat-form-field>
+
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label class="label-styles" >Unidades </mat-label>
+                            <input required type="number" matInput formControlName="cantidad">
+
+                            <mat-error *ngIf="formularioProducto.get('cantidad').hasError('required')">
+                                *La cantidad es obligatoria
+                              </mat-error>
+                              <mat-error *ngIf="formularioProducto.get('cantidad').hasError('min')">
+                                *La cantidad debe ser mayor o igual a 1
+                              </mat-error>
+
+                            <!-- <mat-error *ngIf="formularioProducto.controls['cantidad']">*La cantidad no puede ser 0</mat-error> -->
+                        </mat-form-field>
+
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label class="label-styles">Tipo de producto</mat-label>
+                            <mat-select formControlName="tipo_producto" [(value)]="selectedTipoProducto">
+                              <mat-option *ngFor="let tipos of tiposProductos" [value]="tipos.idTipoProducto">
+                                {{ tipos.nombre }}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="formularioProducto.controls['tipo_producto']">*Seleccione un tipo de producto</mat-error>
+                          </mat-form-field>
+
+                          <mat-form-field class="w-100" appearance="outline">
+                            <mat-label class="label-styles">Proveedor</mat-label>
+                            <mat-select formControlName="tipo_proveedor" [(value)]="selectedProveedor">
+                              <mat-option *ngFor="let proveedor of proveedores" [value]="proveedor.idProveedor">
+                                {{ proveedor.nombre }}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="formularioProducto.controls['tipo_proveedor']">*Seleccione un proveedor</mat-error>
+                          
+                          </mat-form-field>
+
+                        <!-- Agrega más campos del formulario según sea necesario -->
+
+                        <div class="container text-center">
+                            <button mat-raised-button color="primary">
+                                <i class="fa-solid fa-check"></i> Registrar
+                            </button>
+                            <button
+                                type="reset"
+                                mat-raised-button
+                                color="warn"
+                                style="margin-left: 5px"
+                            >
+                                <i class="fa-solid fa-xmark"></i> Limpiar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="container text-center">
+                        <div class="form-group mt-5" *ngIf="imagen">
+                            <h1>Vista previa del producto:</h1>
+                            <img class="image-thumbnail" style="max-width: 220px;" [src]="imagenMin" alt="Vista previa">
+                          </div>
+                    </div>
+                      
+                </div>
+                <!-- Puedes agregar más columnas según sea necesario -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<br />
+<br />
+<br />

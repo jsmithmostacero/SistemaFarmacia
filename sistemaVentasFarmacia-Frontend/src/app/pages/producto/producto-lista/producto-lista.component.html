@@ -1,0 +1,136 @@
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  template="<img width='70px'; src='https://www.gifde.com/gif/otros/decoracion/cargando-loading/cargando-loading-041.gif' />"
+>
+</ngx-spinner>
+<ng-template #noDataTemplate>
+    <!-- Este es el contenido que se mostrará cuando no haya datos -->
+    <p>No hay datos disponibles.</p>
+</ng-template>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Lista de Productos</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                    <li class="breadcrumb-item active">Blank Page</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="mat-elevation-z8 ">
+        <table mat-table [dataSource]="dataSource">
+            <!-- Position idProducto -->
+            <ng-container matColumnDef="idProducto">
+                <th mat-header-cell *matHeaderCellDef>#</th>
+                <td mat-cell *matCellDef="let producto">
+                    {{ producto.idProducto }}
+                </td>
+            </ng-container>
+
+            <!-- Name nombre -->
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td mat-cell *matCellDef="let producto">
+                    {{ producto.nombre }}
+                </td>
+            </ng-container>
+
+            <!-- Name productoImagenUrl -->
+            <ng-container matColumnDef="imagen">
+                <th mat-header-cell *matHeaderCellDef>Foto</th>
+                <td mat-cell *matCellDef="let producto">
+                    <img
+                        [src]="producto.productoImagenUrl"
+                        alt="Imagen no disponible"
+                        width="50"
+                        height="50"
+                    />
+                </td>
+            </ng-container>
+
+            <!-- Weight descripcion -->
+            <!-- <ng-container matColumnDef="descripcion">
+                <th mat-header-cell *matHeaderCellDef>Descripción</th>
+                <td mat-cell *matCellDef="let producto">
+                    {{ producto.descripcion }}
+                </td>
+            </ng-container> -->
+
+            <!-- Symbol precio -->
+            <ng-container matColumnDef="precio">
+                <th mat-header-cell *matHeaderCellDef>Precio</th>
+                <td mat-cell *matCellDef="let producto">
+                    {{ producto.precio | currency:'S/. ':'symbol':'1.2-2' }}
+                </td>
+            </ng-container>
+
+            <!-- Symbol cantidad -->
+            <ng-container matColumnDef="cantidad">
+                <th mat-header-cell *matHeaderCellDef>Stock</th>
+                <td mat-cell *matCellDef="let producto">
+                    {{ producto.cantidad }} uds.
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td mat-cell *matCellDef="let producto">
+
+                   <button mat-icon-button (click)="getProductoShow(producto.idProducto)" color="primary" >
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+
+                    <button mat-icon-button color="accent" >
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                
+                    <button mat-icon-button color="warn" >
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+             <!--
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row (click)="clickedRows.add(row)" 
+            [class.demo-row-is-clicked]="clickedRows.has(row)" 
+            *matRowDef="let row; columns: displayedColumns;">
+            </tr> 
+            -->
+
+        </table>
+
+        <!-- <div>
+      <h3>
+        Click Log
+      </h3>
+    </div> -->
+
+        <!-- @if (!clickedRows.size) {
+      <div>Clicked rows will be logged here</div>
+    }
+ 
+    <ul>
+      @for (clickedRow of clickedRows; track clickedRow) {
+        <li>Clicked on {{clickedRow.nombre}}</li>
+      }
+    </ul> 
+       -->
+        <mat-paginator
+            [pageSizeOptions]="[5, 10, 20]"
+            showFirstLastButtons
+            aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+    </div>
+</section>
