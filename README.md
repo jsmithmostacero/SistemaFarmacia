@@ -1,4 +1,4 @@
-#Crud básico de productos para una farmacia.
+# Crud básico de productos para una farmacia.
 - Implementación de api rest full.
 
 ![](https://github.com/jsmithmostacero/SistemaFarmacia/blob/master/readme-img/Captura%20de%20pantalla%202024-05-25%20113506.png)
@@ -9,7 +9,7 @@
 
 > Formulario para registrar un producto.
 
-###Implementación de tecnologías
+### Implementación de tecnologías
 
 
 ## Spring boot.
@@ -20,7 +20,7 @@
 ## Angular
 ### Frontend.
 
-![](https://github.com/jsmithmostacero/SistemaFarmacia/blob/master/readme-img/angular.png)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/250px-Angular_full_color_logo.svg.png)
 
 
 ## MySql
