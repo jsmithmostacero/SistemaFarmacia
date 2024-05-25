@@ -20,7 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
   styleUrl: './producto-show.component.scss'
 })
 export class ProductoShowComponent implements OnInit{
-  producto?: Producto
+  producto: Producto | undefined;
 
   constructor(
     private productoService:ProductoService,

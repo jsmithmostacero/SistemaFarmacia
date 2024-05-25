@@ -17,4 +17,8 @@ export class ProveedorService {
     return this.httpClient.get<Proveedor[]>(baseUrl+`proveedor/index`);
   }
 
+  public getProveedor(id:number):Observable<Proveedor>{
+    return this.httpClient.get<Proveedor>(baseUrl+`proveedor/show/`+id);
+  }
+
 }

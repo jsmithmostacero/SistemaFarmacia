@@ -68,5 +68,11 @@ export class ProductoListaComponent implements OnInit, AfterViewInit{
     this.router.navigate(['producto-show',id]);
     this.spinner.hide();
   }
+
+  getProductoEdit(id:number):void{
+    this.spinner.show();
+    this.router.navigate(['producto-actualizar',id]);
+    this.spinner.hide();
+  }
 }
 

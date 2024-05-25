@@ -21,14 +21,14 @@ public class ProveedorService {
         return proveedorRepository.findAll();
     }
 
-    public ResponseEntity<Proveedor> obtenerRecursoPorId(@PathVariable Long id) {
+    public ResponseEntity<Proveedor> obtenerRecursoPorId(Long id) {
         Optional<Proveedor> recurso = proveedorRepository.findById(id);
 
         return recurso.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    public Proveedor crearRecurso(@RequestBody Proveedor recurso) {
+    public Proveedor crearRecurso(Proveedor recurso) {
         return proveedorRepository.save(recurso);
     }
 

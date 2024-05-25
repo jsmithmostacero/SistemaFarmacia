@@ -57,7 +57,7 @@ const routes: Routes = [
                 component: ProductoNuevoComponent
             },
             {
-                path: 'producto-actualizar',
+                path: 'producto-actualizar/:id',
                 component: ProductoActualizarComponent
             }
         ]

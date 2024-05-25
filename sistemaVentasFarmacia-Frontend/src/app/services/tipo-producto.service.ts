@@ -18,4 +18,8 @@ export class TipoProductoService {
       public getTiposProductos():Observable<TipoProducto[]>{
         return this.httpClient.get<TipoProducto[]>(baseUrl+`tipo-producto/index`);
       }
+
+      public getTipoProducto(id:number):Observable<TipoProducto>{
+        return this.httpClient.get<TipoProducto>(baseUrl+`tipo-producto/show/`+id);
+      }
 }

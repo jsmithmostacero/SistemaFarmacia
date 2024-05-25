@@ -19,7 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/producto")
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"})
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8090"})
 public class ProductoController
 {
     @Autowired
@@ -68,10 +68,49 @@ public class ProductoController
         return productoService.obtenerRecursoPorId(id);
     }
 
-    @PostMapping("/update")
-    public Producto update(@RequestParam Long id,@RequestBody Producto modificado){
-        return productoService.actualizarRecurso(id,modificado);
+    @PostMapping("/updateNotImage")
+    public Producto updateNotImage(
+            @RequestParam("idProducto") Long idProducto,
+            @RequestBody Producto producto
+    ){
+        return productoService.actualizarRecurso(idProducto,producto);
     }
+
+    @PostMapping("/updateYesImage")
+    public ResponseEntity<Producto> updateYesImage(
+            @PathVariable Long id,
+            @RequestParam("multipartFile") MultipartFile multipartFile,
+            @RequestBody Producto modificado) throws IOException {
+        try {
+            if (multipartFile == null) {
+                // Manejar el caso en que no se proporciona un archivo multimedia
+                return ResponseEntity.badRequest().build();
+            }
+
+            // Eliminar la imagen existente en Cloudinary
+            cloudinaryService.delete(modificado.getProductoImagenId());
+
+            // Subir la nueva imagen a Cloudinary
+            BufferedImage bi = ImageIO.read(multipartFile.getInputStream());
+            if (bi == null) {
+                // Manejar el caso en que el archivo multimedia no es una imagen válida
+                return ResponseEntity.badRequest().build();
+            }
+
+            Map result = cloudinaryService.upload(multipartFile);
+            modificado.setProductoImagenUrl((String) result.get("url"));
+            modificado.setProductoImagenId((String) result.get("public_id"));
+
+            // Actualizar el producto en la base de datos
+            Producto productoActualizado = productoService.actualizarRecurso(id, modificado);
+
+            return ResponseEntity.ok(productoActualizado);
+        } catch (Exception e) {
+            // Manejar cualquier excepción y devolver una respuesta adecuada
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 
     @PostMapping(value = "/delete/{id}")
     public ResponseEntity<Producto> delete(@PathVariable(value = "id") Long id){

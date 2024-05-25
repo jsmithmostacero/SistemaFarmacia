@@ -21,19 +21,18 @@ public class TipoProductoService {
         return tipoProductoRepository.findAll();
     }
 
-    public ResponseEntity<TipoProducto> obtenerRecursoPorId(@PathVariable Long id) {
+    public ResponseEntity<TipoProducto> obtenerRecursoPorId(Long id) {
         Optional<TipoProducto> recurso = tipoProductoRepository.findById(id);
 
         return recurso.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public TipoProducto crearRecurso(@RequestBody TipoProducto recurso) {
+    public TipoProducto crearRecurso(TipoProducto recurso) {
         return tipoProductoRepository.save(recurso);
     }
 
-    public TipoProducto actualizarRecurso(@PathVariable Long id, @RequestBody TipoProducto nuevoRecurso) {
+    public TipoProducto actualizarRecurso(Long id,TipoProducto nuevoRecurso) {
         return tipoProductoRepository.findById(id)
                 .map(recurso -> {
                     // Actualizar propiedades según las necesidades
@@ -47,7 +46,7 @@ public class TipoProductoService {
                 });
     }
 
-    public ResponseEntity<TipoProducto> eliminarRecurso(@PathVariable Long id) {
+    public ResponseEntity<TipoProducto> eliminarRecurso(Long id) {
         tipoProductoRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }

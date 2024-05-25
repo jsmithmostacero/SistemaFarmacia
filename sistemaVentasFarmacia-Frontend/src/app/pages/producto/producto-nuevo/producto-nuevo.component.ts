@@ -4,11 +4,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {NgxMatFileInputModule} from '@angular-material-components/file-input';
-import {TipoProducto} from '@/models/tipo-producto';
-import {TipoProductoService} from '@services/tipo-producto.service';
 import {CommonModule} from '@angular/common';
-import {Proveedor} from '@/models/proveedor';
-import {ProveedorService} from '@services/proveedor.service';
 import {
     FormBuilder,
     FormGroup,
@@ -20,8 +16,16 @@ import {
     NgForm,
     FormControl
 } from '@angular/forms';
-import {ProductoService} from '@services/producto.service';
+//MODELS
+import {Proveedor} from '@/models/proveedor';
 import {Producto} from '@/models/producto';
+import {TipoProducto} from '@/models/tipo-producto';
+
+//SERVICES
+import {ProveedorService} from '@services/proveedor.service';
+import {ProductoService} from '@services/producto.service';
+import {TipoProductoService} from '@services/tipo-producto.service';
+
 import Swal from 'sweetalert2';
 import {NgxSpinnerModule, NgxSpinnerService} from 'ngx-spinner';
 import { ToastrModule,ToastrService} from 'ngx-toastr';
